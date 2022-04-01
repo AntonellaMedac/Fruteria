@@ -17,7 +17,7 @@ public class Fruteria {
     }
 
     public String getFruteria() {
-        return nombre;
+        return this.nombre;
     }
 
     public void setFruteria(String fruteria) {
@@ -25,7 +25,7 @@ public class Fruteria {
     }
 
     public ArrayList<Cliente> getListaClientesNoAtendidos() {
-        return listaClientesNoAtendidos;
+        return this.listaClientesNoAtendidos;
     }
 
     public void setListaClientesNoAtendidos(ArrayList<Cliente> listaClientesNoAtendidos) {
@@ -33,7 +33,7 @@ public class Fruteria {
     }
 
     public ArrayList<Cliente> getListaClientesAtendidos() {
-        return listaClientesAtendidos;
+        return this.listaClientesAtendidos;
     }
 
     public void setListaClientesAtendidos(ArrayList<Cliente> listaClientesAtendidos) {
@@ -41,11 +41,62 @@ public class Fruteria {
     }
 
     public int getContadorClientes() {
-        return contadorClientes;
+        return this.contadorClientes;
     }
 
     public void setContadorClientes(int contadorClientes) {
         this.contadorClientes = contadorClientes;
     }
 
-}
+    private int buscarCliente(int ticket){
+        int posicion = -1;
+        int i = 0;
+        while (i < this.listaClientesNoAtendidos.size() && this.listaClientesNoAtendidos.get(i).getnTicket() != ticket){
+            i++;
+        }
+        if (i < this.listaClientesNoAtendidos.size()) {
+            posicion = i;
+        }
+        return posicion;
+    }
+    public int adelantar(int ticket) {
+        int posicion = this.buscarCliente(ticket);
+        Cliente clientePos = null;
+        if (posicion >= 0 && posicion != 0) {
+            clientePos = this.listaClientesNoAtendidos.get(posicion);
+            this.listaClientesNoAtendidos.get(posicion - 1);
+            this.listaClientesNoAtendidos.set(posicion - 1, clientePos);
+            return posicion;
+        }
+        return posicion;
+    }
+
+    public int retrasar(int ticket) {
+       int posicion = this.buscarCliente(ticket);
+        if (posicion >= 0 && posicion != this.listaClientesNoAtendidos.size() - 1) {
+            this.listaClientesNoAtendidos.set(posicion, this.listaClientesNoAtendidos.get(posicion + 1));
+            return posicion;
+        }
+
+        return posicion;
+    }
+
+    public boolean dejarPasar() {
+        if (this.listaClientesNoAtendidos.get(1) == null) {
+            return false;
+        } else {
+            Cliente clienteDejaPasar = this.listaClientesNoAtendidos.get(0);
+            this.listaClientesNoAtendidos.set(0, this.listaClientesNoAtendidos.get(1));
+            this.listaClientesNoAtendidos.set(1, clienteDejaPasar);
+            return true;
+        }
+    }
+
+        @Override
+        public String toString(){
+            String frase = "";
+            frase += "Fruteria " + this.nombre;
+            frase += "\nClientes atendidos: " + this.contadorClientes;
+        return frase;
+        }
+    }
