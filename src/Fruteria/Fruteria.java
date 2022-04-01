@@ -48,10 +48,15 @@ public class Fruteria {
         this.contadorClientes = contadorClientes;
     }
 
-    private int buscarCliente(int ticket){
+    public void nuevoCliente(Edad edad) {
+        this.listaClientesNoAtendidos.add(new Cliente(contadorClientes + 1, edad));
+        this.contadorClientes++;
+    }
+
+    private int posicionMayores() {
         int posicion = -1;
         int i = 0;
-        while (i < this.listaClientesNoAtendidos.size() && this.listaClientesNoAtendidos.get(i).getnTicket() != ticket){
+        while (i < this.listaClientesNoAtendidos.size() && this.listaClientesNoAtendidos.get(i).getEdad() != Edad.MAYOR) {
             i++;
         }
         if (i < this.listaClientesNoAtendidos.size()) {
@@ -59,6 +64,48 @@ public class Fruteria {
         }
         return posicion;
     }
+
+    public boolean atenderCliente() {
+
+        if (this.listaClientesNoAtendidos.isEmpty()) {
+            return false;
+        } else {
+            int posicionMayores = this.posicionMayores();
+            if (posicionMayores >= 0) {
+                this.listaClientesAtendidos.add(this.listaClientesNoAtendidos.get(posicionMayores));
+                this.listaClientesNoAtendidos.remove(posicionMayores);
+                return true;
+            } else {
+                this.listaClientesAtendidos.add(this.listaClientesNoAtendidos.get(0));
+                this.listaClientesNoAtendidos.remove(0);
+                return true;
+            }
+
+        }
+    }
+
+    private int buscarCliente(int ticket) {
+        int posicionCliente = -1;
+        int i = 0;
+        while (i < this.listaClientesNoAtendidos.size() && this.listaClientesNoAtendidos.get(i).getnTicket() != ticket) {
+            i++;
+        }
+
+        if (i < this.listaClientesNoAtendidos.size()) {
+            posicionCliente = i;
+        }
+        return posicionCliente;
+    }
+
+    public boolean clienteAbandona(int Ticket) {
+        int posicionBuscar = this.buscarCliente(Ticket);
+        if (posicionBuscar >= 0) {
+            this.listaClientesNoAtendidos.remove(posicionBuscar);
+            return true;
+        }
+        return false;
+    }
+
     public int adelantar(int ticket) {
         int posicion = this.buscarCliente(ticket);
         Cliente clientePos = null;
@@ -72,7 +119,7 @@ public class Fruteria {
     }
 
     public int retrasar(int ticket) {
-       int posicion = this.buscarCliente(ticket);
+        int posicion = this.buscarCliente(ticket);
         if (posicion >= 0 && posicion != this.listaClientesNoAtendidos.size() - 1) {
             this.listaClientesNoAtendidos.set(posicion, this.listaClientesNoAtendidos.get(posicion + 1));
             return posicion;
@@ -92,11 +139,11 @@ public class Fruteria {
         }
     }
 
-        @Override
-        public String toString(){
-            String frase = "";
-            frase += "Fruteria " + this.nombre;
-            frase += "\nClientes atendidos: " + this.contadorClientes;
+    @Override
+    public String toString() {
+        String frase = "";
+        frase += "Fruteria " + this.nombre;
+        frase += "\nClientes atendidos: " + this.contadorClientes;
         return frase;
-        }
     }
+}
