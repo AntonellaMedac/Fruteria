@@ -48,4 +48,62 @@ public class Fruteria {
         this.contadorClientes = contadorClientes;
     }
 
+    public void nuevoCliente(Edad edad) {
+        this.listaClientesNoAtendidos.add(new Cliente(contadorClientes + 1, edad));
+        this.contadorClientes++;
+    }
+
+    private int posicionMayores() {
+        int posicion = -1;
+        int i = 0;
+        while (i < this.listaClientesNoAtendidos.size() && this.listaClientesNoAtendidos.get(i).getEdad() != Edad.MAYOR) {
+            i++;
+        }
+        if (i < this.listaClientesNoAtendidos.size()) {
+            posicion = i;
+        }
+        return posicion;
+    }
+
+    public boolean atenderCliente() {
+
+        if (this.listaClientesNoAtendidos.isEmpty()) {
+            return false;
+        } else {
+            int posicionMayores = this.posicionMayores();
+            if (posicionMayores >= 0) {
+                this.listaClientesAtendidos.add(this.listaClientesNoAtendidos.get(posicionMayores));
+                this.listaClientesNoAtendidos.remove(posicionMayores);
+                return true;
+            } else {
+                this.listaClientesAtendidos.add(this.listaClientesNoAtendidos.get(0));
+                this.listaClientesNoAtendidos.remove(0);
+                return true;
+            }
+
+        }
+    }
+
+    private int buscarCliente(int ticket) {
+        int posicionCliente = -1;
+        int i = 0;
+        while (i < this.listaClientesNoAtendidos.size() && this.listaClientesNoAtendidos.get(i).getnTicket() != ticket) {
+            i++;
+        }
+
+        if (i < this.listaClientesNoAtendidos.size()) {
+            posicionCliente = i;
+        }
+        return posicionCliente;
+    }
+
+    public boolean clienteAbandona(int Ticket) {
+        int posicionBuscar = this.buscarCliente(Ticket);
+        if (posicionBuscar >= 0) {
+            this.listaClientesNoAtendidos.remove(posicionBuscar);
+            return true;
+        }
+        return false;
+    }
+
 }
