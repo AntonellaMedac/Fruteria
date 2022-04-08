@@ -9,10 +9,14 @@ public class Menu {
         
         Scanner sc= new Scanner(System.in);
         
+        System.out.println("Indica el nombre de la fruteria: ");
+        
+        Fruteria f= new Fruteria(sc.next());
+       
+        
         int opcion;
         
         do{
-            opcion=sc.nextInt();
             
             System.out.println("-----------------------------"
                              + "\n1.- Añadir cliente"
@@ -25,18 +29,26 @@ public class Menu {
                              + "\n8.- Salir"
                              + "\n--------------------------");
             
+            opcion=sc.nextInt();
+
+            
             switch(opcion){
                 case 1:
+                    int opcion2;
                     do{
+                        opcion2=sc.nextInt();
                         System.out.println("1.-Es mayor"
-                                         + "\n2.-Es menor");
-                        switch(opcion){
+                                         + "\n2.-Es joven");
+                        switch(opcion2){
                             case 1:
-                                Cliente c=new Cliente(opcion, Edad.MAYOR);
+                               f.nuevoCliente(Edad.MAYOR);
+                                break;
+                            case 2: 
+                                f.nuevoCliente(Edad.JOVEN);
                                 break;
                         }
                         
-                    }while(opcion!=1||opcion!=2);
+                    }while(opcion2!=1||opcion2!=2);
                     break;
                     
                 case 2:
@@ -53,9 +65,13 @@ public class Menu {
                     break;
                     
                 case 6:
+                    System.out.println(f.getListaClientesNoAtendidos().toString());
+                    System.out.println("");
                     break;
                     
                 case 7:
+                    System.out.println(f.getListaClientesAtendidos().toString());
+                    System.out.println("");
                     break;
                     
             }
