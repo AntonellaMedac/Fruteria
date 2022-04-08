@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Menu {
 
     public static void main(String[] args) {
+
         
         Scanner sc= new Scanner(System.in);
         
@@ -63,6 +64,15 @@ public class Menu {
         }while(opcion!=8);
         
        
+
+        /*Fruteria f1 = new Fruteria("Manu");
+        f1.nuevoCliente(Edad.JOVEN);
+        f1.nuevoCliente(Edad.JOVEN);
+        f1.nuevoCliente(Edad.JOVEN);
+        f1.nuevoCliente(Edad.JOVEN);
+        f1.nuevoCliente(Edad.JOVEN);
+        System.out.println(f1.getListaClientesNoAtendidos().toString());
+>>>>>>> a6bfd624d9ce2b75181a913f16fe9c19df9ee15e*/
     }
-    
+
 }
