@@ -5,6 +5,11 @@
         <group name="13 - Clases abstractas">
             <file>file:/C:/Users/manue/Documents/PracticaEvaluableEntornos/Fruteria/src/Fruteria/Fruteria.java</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/Usuario/Documents/ProyectoEntornos/Fruteria/src/Fruteria/Menu.java</file>
+            <file>file:/C:/Users/Usuario/Documents/ProyectoEntornos/Fruteria/src/Fruteria/Edad.java</file>
+            <file>file:/C:/Users/Usuario/Documents/ProyectoEntornos/Fruteria/src/Fruteria/Cliente.java</file>
+            <file>file:/C:/Users/Usuario/Documents/ProyectoEntornos/Fruteria/src/Fruteria/Fruteria.java</file>
+        </group>
     </open-files>
 </project-private>
