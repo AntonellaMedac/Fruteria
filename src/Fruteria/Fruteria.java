@@ -1,4 +1,4 @@
--¡package Fruteria;
+package Fruteria;
 
 import java.util.ArrayList;
 
@@ -109,10 +109,12 @@ public class Fruteria {
     public int adelantar(int ticket) {
         int posicion = this.buscarCliente(ticket);
         Cliente clientePos = null;
-        if (posicion >= 0 && posicion != 0) {
+        Cliente clientePos2 = null;
+        if (posicion > 0) {
             clientePos = this.listaClientesNoAtendidos.get(posicion);
-            this.listaClientesNoAtendidos.get(posicion - 1);
+            clientePos2 = this.listaClientesNoAtendidos.get(posicion - 1);
             this.listaClientesNoAtendidos.set(posicion - 1, clientePos);
+            this.listaClientesNoAtendidos.set(posicion, clientePos2);
             return posicion;
         }
         return posicion;
@@ -121,7 +123,9 @@ public class Fruteria {
     public int retrasar(int ticket) {
         int posicion = this.buscarCliente(ticket);
         if (posicion >= 0 && posicion != this.listaClientesNoAtendidos.size() - 1) {
+            Cliente clientepos = this.listaClientesNoAtendidos.get(posicion);
             this.listaClientesNoAtendidos.set(posicion, this.listaClientesNoAtendidos.get(posicion + 1));
+            this.listaClientesNoAtendidos.set(posicion + 1, clientepos);
             return posicion;
         }
 
