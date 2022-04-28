@@ -6,7 +6,7 @@ public class Menu {
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in).useDelimiter("\n");
 
         System.out.println("Indica el nombre de la fruteria: ");
         String nombre = sc.next();
