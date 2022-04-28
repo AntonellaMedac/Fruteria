@@ -7,6 +7,8 @@ public class Cliente {
     public Cliente(int nTicket, Edad edad){
         this.nTicket = nTicket;
         this.edad = edad;
+        
+        
     }
 
     public int getnTicket() {
