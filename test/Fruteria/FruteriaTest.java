@@ -23,6 +23,15 @@ public class FruteriaTest {
      */
     @Test
     public void testAtenderCliente() {
+        
+        Fruteria prueba = new Fruteria ("La lolita");
+        prueba.nuevoCliente(Edad.JOVEN);
+        prueba.nuevoCliente(Edad.JOVEN);
+        
+        prueba.adelantar(2);
+        
+        assertEquals(2, prueba.getListaClientesNoAtendidos().get(0).getnTicket());        
+        
     }
 
     /**
