@@ -50,7 +50,17 @@ public class FruteriaTest {
      * Test of dejarPasar method, of class Fruteria.
      */
     @Test
-    public void testDejarPasar() {
+    public void testDejarPasarComprobarPosicionYEdad() {
+        Fruteria fx = new Fruteria("Juan");
+        fx.nuevoCliente(Edad.JOVEN);
+        fx.nuevoCliente(Edad.MAYOR);
+        
+        fx.dejarPasar();
+        //comprobamos que el ticket de la posicion 1 efectivamenta ya no es la misma de antes 
+        assertNotEquals(fx.getListaClientesNoAtendidos().get(1),fx.getListaClientesNoAtendidos().get(0).getnTicket() );
+        //nos aseguramos de que el vcalor de la edad es Mayor
+        assertTrue(fx.getListaClientesNoAtendidos().get(0).getEdad()==Edad.MAYOR);
+    
     }
 
     /**
