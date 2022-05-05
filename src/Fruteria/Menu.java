@@ -16,7 +16,7 @@ public class Menu {
 
         do {
 
-            System.out.println(nombre+"\n-----------------------------"
+            System.out.println(nombre + "\n-----------------------------"
                     + "\n1.- Añadir cliente"
                     + "\n2.- Atender cliente"
                     + "\n3.- Adelantar puesto"
@@ -73,10 +73,12 @@ public class Menu {
                 case 4:
                     System.out.println("Introduca el ticket del cliente que va a retrasar");
                     int ticketAtrasar = sc.nextInt();
-                    if (f.retrasar(ticketAtrasar) >= 0 && f.retrasar(ticketAtrasar) != f.getListaClientesNoAtendidos().size()-1) {
-                        System.out.println("Ciente con ticket " + ticketAtrasar + " ha retrasado un puesto");
-                    } else {
+                    int posicionCliente=f.retrasar(ticketAtrasar);
+                    if (posicionCliente == -1 || posicionCliente == f.getListaClientesNoAtendidos().size() - 1) {
                         System.out.println("No se ha podido retrasar al cliente");
+                    } else {
+                        System.out.println("Ciente con ticket " + ticketAtrasar + " ha retrasado un puesto");
+
                     }
                     break;
 
